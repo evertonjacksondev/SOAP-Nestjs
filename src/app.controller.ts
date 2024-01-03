@@ -1,12 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { SigepWebService } from './app.service';
+
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: SigepWebService) { }
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  async getLabels() {
+    return await this.appService.rechargeLabels();
   }
 }

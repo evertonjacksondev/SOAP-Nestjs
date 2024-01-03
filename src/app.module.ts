@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { SoapModule } from 'nestjs-soap';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    SoapModule.register(
+      { clientName: 'SIGEPWEB', uri: `https://${process.env.TYPE_ENVIRONMENT}.correios.com.br/SigepMasterJPA/AtendeClienteService/AtendeCliente?wsdl` },
+    ),
+  ],
 })
-export class AppModule {}
+export class AppModule { }
